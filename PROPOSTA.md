@@ -1,4 +1,4 @@
-# :checkered_flag: Vagas no Transporte
+# :checkered_flag: Portal de Empregos do Transporte de Cargas
 
 Site gratuito de vagas de emprego para motoristas de caminhão e operadores de máquinas pesadas na Região Metropolitana de Fortaleza. Transportadoras publicam vagas e candidatos montam o currículo e se candidatam. A parceira inicial do projeto é a Raysan Transportes.
 
@@ -6,7 +6,7 @@ Site gratuito de vagas de emprego para motoristas de caminhão e operadores de m
 
 | Matrícula | Nome | Curso |
 |---|---|---|
-| _preencher_ | Raíssa Ívyna Moreira de Oliveira | Engenharia de Computação |
+| 553679 | Raíssa Ívyna Moreira de Oliveira | Engenharia de Computação |
 
 ## :bulb: Objetivo Geral
 

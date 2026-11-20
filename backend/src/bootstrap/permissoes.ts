@@ -34,11 +34,13 @@ const ler = (api: string) => [`api::${api}.${api}.find`, `api::${api}.${api}.fin
 const PERMISSOES: Record<string, string[]> = {
   [PAPEIS.PUBLICO]: [
     'plugin::users-permissions.auth.callback', // login
+    // o cadastro (/api/cadastro) é público pela própria rota (auth: false)
     ...ler('vaga'),
     ...ler('empresa'),
   ],
   [PAPEIS.EMPRESA]: [
     'plugin::users-permissions.user.me',
+    'api::perfil.perfil.meu',
     ...ler('vaga'),
     'api::vaga.vaga.create',
     'api::vaga.vaga.update',
@@ -51,6 +53,7 @@ const PERMISSOES: Record<string, string[]> = {
   ],
   [PAPEIS.CANDIDATO]: [
     'plugin::users-permissions.user.me',
+    'api::perfil.perfil.meu',
     ...ler('vaga'),
     ...ler('empresa'),
     ...ler('curriculo'),
@@ -62,6 +65,7 @@ const PERMISSOES: Record<string, string[]> = {
   ],
   [PAPEIS.ADMINISTRADOR]: [
     'plugin::users-permissions.user.me',
+    'api::perfil.perfil.meu',
     ...ler('vaga'),
     'api::vaga.vaga.delete',
     ...ler('empresa'),

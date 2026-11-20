@@ -42,6 +42,7 @@ const PERMISSOES: Record<string, string[]> = {
     'plugin::users-permissions.user.me',
     'api::perfil.perfil.meu',
     ...ler('vaga'),
+    'api::vaga.vaga.minhas',
     'api::vaga.vaga.create',
     'api::vaga.vaga.update',
     'api::vaga.vaga.delete',

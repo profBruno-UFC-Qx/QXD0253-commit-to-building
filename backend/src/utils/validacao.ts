@@ -80,3 +80,47 @@ export function umDe<T extends string>(valor: unknown, permitidos: readonly T[],
   }
   return valor as T;
 }
+
+export function inteiro(valor: unknown, campo: string, min: number, max: number): number {
+  const numero = typeof valor === 'string' && valor.trim() !== '' ? Number(valor) : valor;
+  if (typeof numero !== 'number' || !Number.isInteger(numero) || numero < min || numero > max) {
+    throw new ValidationError(`O campo "${campo}" deve ser um número inteiro entre ${min} e ${max}.`);
+  }
+  return numero;
+}
+
+/** Número opcional (vazio vira null), maior ou igual a zero. */
+export function valorOpcional(valor: unknown, campo: string): number | null {
+  if (valor === undefined || valor === null || valor === '') return null;
+  const numero = typeof valor === 'string' ? Number(valor.replace(',', '.')) : valor;
+  if (typeof numero !== 'number' || !Number.isFinite(numero) || numero < 0) {
+    throw new ValidationError(`O campo "${campo}" deve ser um valor maior ou igual a zero.`);
+  }
+  return Math.round(numero * 100) / 100;
+}
+
+/**
+ * Valida só os campos presentes em "dados" (útil para edição parcial).
+ * Cada validador recebe o valor bruto e devolve o valor limpo.
+ */
+export function campos<T extends Record<string, unknown>>(
+  dados: Record<string, unknown>,
+  validadores: { [K in keyof T]: (valor: unknown) => T[K] },
+  parcial: boolean
+): Partial<T> {
+  const resultado: Partial<T> = {};
+  for (const chave of Object.keys(validadores) as (keyof T)[]) {
+    if (parcial && !(chave in dados)) continue;
+    resultado[chave] = validadores[chave](dados[chave as string]);
+  }
+  return resultado;
+}
+
+/** Lê o objeto "data" do corpo da requisição, no formato padrão do Strapi. */
+export function corpoData(body: unknown): Record<string, unknown> {
+  const data = (body as { data?: unknown } | undefined)?.data;
+  if (typeof data !== 'object' || data === null || Array.isArray(data)) {
+    throw new ValidationError('Envie os dados no formato { "data": { ... } }.');
+  }
+  return data as Record<string, unknown>;
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "empresas",
+  "info": {
+    "singularName": "empresa",
+    "pluralName": "empresas",
+    "displayName": "Empresa",
+    "description": "Transportadora que publica vagas. Precisa ser aprovada pelo administrador."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "nome": { "type": "string", "required": true, "minLength": 2, "maxLength": 120 },
+    "cnpj": { "type": "string", "required": true, "unique": true, "regex": "^\\d{14}$" },
+    "cidade": { "type": "string", "required": true, "maxLength": 80 },
+    "telefone": { "type": "string", "required": true, "maxLength": 20 },
+    "descricao": { "type": "text", "maxLength": 2000 },
+    "situacao": {
+      "type": "enumeration",
+      "enum": ["pendente", "aprovada", "recusada"],
+      "default": "pendente",
+      "required": true
+    },
+    "responsavel": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "vagas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vaga.vaga",
+      "mappedBy": "empresa"
+    }
+  }
+}

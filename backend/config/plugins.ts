@@ -26,9 +26,11 @@ const deniedTypes = [
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin => ({
   'users-permissions': {
     config: {
-      jwtManagement: 'refresh',
-      sessions: {
-        httpOnly: true,
+      // JWT clássico: o login devolve um token assinado que o frontend envia
+      // no cabeçalho "Authorization: Bearer <token>" em cada requisição.
+      jwtManagement: 'legacy-support',
+      jwt: {
+        expiresIn: '7d',
       },
     },
   },

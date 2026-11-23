@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Transportadoras e empresas participantes do Portal de Empregos do Transporte de Cargas." />
+    <title>Empresas | Portal de Empregos do Transporte de Cargas</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/estilos/principal.css" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header id="topo"></header>
+
+    <main id="conteudo" class="flex-grow-1 py-4">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-4">
+          <div>
+            <h1 class="h3 mb-1">Empresas participantes</h1>
+            <p class="text-body-secondary mb-0">Transportadoras aprovadas que publicam vagas no portal.</p>
+          </div>
+          <a class="btn btn-outline-primary" href="/cadastro.html?tipo=empresa">
+            <i class="bi bi-building-add me-1" aria-hidden="true"></i>Cadastrar minha empresa
+          </a>
+        </div>
+        <div id="lista"></div>
+      </div>
+    </main>
+
+    <footer id="rodape"></footer>
+    <script type="module" src="/src/paginas/empresas.ts"></script>
+  </body>
+</html>

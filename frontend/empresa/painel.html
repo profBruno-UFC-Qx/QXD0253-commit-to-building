@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Painel da empresa com as vagas publicadas e os candidatos." />
+    <meta name="robots" content="noindex" />
+    <title>Painel da empresa | Portal de Empregos do Transporte de Cargas</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/estilos/principal.css" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header id="topo"></header>
+
+    <main id="conteudo" class="flex-grow-1 py-4">
+      <div class="container">
+        <div id="aviso" aria-live="polite"></div>
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+          <div>
+            <h1 class="h3 mb-1">Painel da empresa</h1>
+            <p class="text-body-secondary mb-0" id="nome-empresa">&nbsp;</p>
+          </div>
+          <a class="btn btn-destaque" href="/empresa/vaga-form.html" id="botao-nova-vaga">
+            <i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Nova vaga
+          </a>
+        </div>
+        <div id="situacao-empresa"></div>
+        <div class="row g-3 mb-4" id="indicadores"></div>
+        <section class="card cartao" aria-labelledby="titulo-vagas">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+              <h2 class="h5 mb-0" id="titulo-vagas">Minhas vagas</h2>
+              <div class="btn-group btn-group-sm" role="group" aria-label="Filtrar por situação" id="filtro-situacao">
+                <input type="radio" class="btn-check" name="situacao" id="sit-todas" value="" checked />
+                <label class="btn btn-outline-primary" for="sit-todas">Todas</label>
+                <input type="radio" class="btn-check" name="situacao" id="sit-abertas" value="aberta" />
+                <label class="btn btn-outline-primary" for="sit-abertas">Abertas</label>
+                <input type="radio" class="btn-check" name="situacao" id="sit-encerradas" value="encerrada" />
+                <label class="btn btn-outline-primary" for="sit-encerradas">Encerradas</label>
+              </div>
+            </div>
+            <div id="mensagem" aria-live="polite"></div>
+            <div id="lista"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer id="rodape"></footer>
+    <script type="module" src="/src/paginas/empresa/painel.ts"></script>
+  </body>
+</html>

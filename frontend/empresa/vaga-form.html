@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Cadastro e edição de vagas da empresa." />
+    <meta name="robots" content="noindex" />
+    <title>Vaga | Portal de Empregos do Transporte de Cargas</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/estilos/principal.css" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header id="topo"></header>
+
+    <main id="conteudo" class="flex-grow-1 py-4">
+      <div class="container caixa-formulario-larga">
+        <nav aria-label="Caminho" class="mb-3">
+          <ol class="breadcrumb small mb-0">
+            <li class="breadcrumb-item"><a href="/empresa/painel.html">Painel</a></li>
+            <li class="breadcrumb-item active" aria-current="page" id="caminho">Nova vaga</li>
+          </ol>
+        </nav>
+        <div class="card cartao">
+          <div class="card-body p-4">
+            <h1 class="h4 mb-3" id="titulo-pagina">Nova vaga</h1>
+            <div id="mensagem" aria-live="polite"></div>
+            <form id="form-vaga" novalidate>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="titulo" class="form-label">Título da vaga</label>
+                  <input type="text" class="form-control" id="titulo" name="titulo" minlength="3" maxlength="120" placeholder="Ex.: Motorista de rodotrem" required />
+                  <div class="invalid-feedback">Informe um título de 3 a 120 caracteres.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="tipo" class="form-label">Tipo</label>
+                  <select class="form-select" id="tipo" name="tipo" required>
+                    <option value="">Selecione</option>
+                    <option value="motorista">Motorista</option>
+                    <option value="operador">Operador de máquinas</option>
+                  </select>
+                  <div class="invalid-feedback">Selecione o tipo da vaga.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="cidade" class="form-label">Cidade</label>
+                  <input type="text" class="form-control" id="cidade" name="cidade" list="cidades" maxlength="80" required />
+                  <datalist id="cidades"></datalist>
+                  <div class="invalid-feedback">Informe a cidade.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="cnhExigida" class="form-label">CNH exigida</label>
+                  <select class="form-select" id="cnhExigida" name="cnhExigida" aria-describedby="ajuda-cnh">
+                    <option value="nenhuma">Não exige CNH</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                  </select>
+                  <div class="form-text" id="ajuda-cnh">Candidatos com categoria superior também podem se candidatar.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="equipamento" class="form-label">Equipamento <span class="text-body-secondary small">(opcional)</span></label>
+                  <input type="text" class="form-control" id="equipamento" name="equipamento" list="equipamentos" maxlength="80" placeholder="Ex.: Rodotrem" />
+                  <datalist id="equipamentos">
+                    <option value="Rodotrem"></option><option value="Bitrem"></option><option value="Vanderleia"></option>
+                    <option value="Carreta LS"></option><option value="Truck"></option><option value="Toco"></option>
+                    <option value="Pá carregadeira"></option><option value="Retroescavadeira"></option><option value="Escavadeira"></option>
+                  </datalist>
+                </div>
+                <div class="col-sm-6">
+                  <label for="salario" class="form-label">Salário <span class="text-body-secondary small">(opcional)</span></label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text">R$</span>
+                    <input type="number" class="form-control" id="salario" name="salario" min="0" step="0.01" placeholder="A combinar" />
+                    <div class="invalid-feedback">Informe um valor maior ou igual a zero.</div>
+                  </div>
+                </div>
+                <div class="col-sm-6" id="campo-situacao" hidden>
+                  <label for="situacao" class="form-label">Situação</label>
+                  <select class="form-select" id="situacao" name="situacao">
+                    <option value="aberta">Aberta</option>
+                    <option value="encerrada">Encerrada</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="descricao" class="form-label">Descrição</label>
+                  <textarea class="form-control" id="descricao" name="descricao" rows="6" minlength="10" maxlength="4000" placeholder="Atividades, rota, escala, experiência desejada, benefícios..." required></textarea>
+                  <div class="invalid-feedback">Descreva a vaga (de 10 a 4000 caracteres).</div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end gap-2 mt-4">
+                <a class="btn btn-outline-secondary" href="/empresa/painel.html">Cancelar</a>
+                <button type="submit" class="btn btn-primary" id="botao-salvar"><i class="bi bi-check-lg me-1" aria-hidden="true"></i>Publicar vaga</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="rodape"></footer>
+    <script type="module" src="/src/paginas/empresa/vaga-form.ts"></script>
+  </body>
+</html>

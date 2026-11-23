@@ -115,3 +115,8 @@
 .texto-livre {
   white-space: pre-line;
 }
+
+/* Permite que textos longos quebrem dentro de flex */
+.min-w-0 {
+  min-width: 0;
+}

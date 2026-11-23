@@ -1,0 +1,117 @@
+/*
+ * Estilos do site. Usa o Bootstrap como base e ajusta as cores para a
+ * identidade do projeto: azul-escuro (estrada à noite) e amarelo
+ * (sinalização de estrada).
+ */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.min.css';
+
+:root {
+  --cor-marca: #12355b;
+  --cor-marca-escura: #0b233d;
+  --cor-destaque: #f2a900;
+  --cor-destaque-escura: #d69500;
+
+  --bs-primary: var(--cor-marca);
+  --bs-primary-rgb: 18, 53, 91;
+  --bs-link-color: #1d5fa8;
+  --bs-link-color-rgb: 29, 95, 168;
+  --bs-link-hover-color: var(--cor-marca);
+  --bs-body-bg: #f5f7fa;
+  --bs-font-sans-serif: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ---------- Cores da marca ---------- */
+.bg-marca {
+  background-color: var(--cor-marca);
+}
+.text-destaque {
+  color: var(--cor-destaque);
+}
+.bg-destaque {
+  background-color: var(--cor-destaque);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--cor-marca);
+  --bs-btn-border-color: var(--cor-marca);
+  --bs-btn-hover-bg: var(--cor-marca-escura);
+  --bs-btn-hover-border-color: var(--cor-marca-escura);
+  --bs-btn-active-bg: var(--cor-marca-escura);
+  --bs-btn-active-border-color: var(--cor-marca-escura);
+  --bs-btn-disabled-bg: var(--cor-marca);
+  --bs-btn-disabled-border-color: var(--cor-marca);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--cor-marca);
+  --bs-btn-border-color: var(--cor-marca);
+  --bs-btn-hover-bg: var(--cor-marca);
+  --bs-btn-hover-border-color: var(--cor-marca);
+  --bs-btn-active-bg: var(--cor-marca-escura);
+}
+.btn-destaque {
+  --bs-btn-color: #1f1f1f;
+  --bs-btn-bg: var(--cor-destaque);
+  --bs-btn-border-color: var(--cor-destaque);
+  --bs-btn-hover-color: #1f1f1f;
+  --bs-btn-hover-bg: var(--cor-destaque-escura);
+  --bs-btn-hover-border-color: var(--cor-destaque-escura);
+  --bs-btn-active-bg: var(--cor-destaque-escura);
+  --bs-btn-font-weight: 600;
+}
+
+/* ---------- Navbar ---------- */
+.navbar .nav-link.active {
+  color: var(--cor-destaque);
+  font-weight: 600;
+}
+
+/* ---------- Componentes ---------- */
+.cartao {
+  border: 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
+}
+.cartao-interativo {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.cartao-interativo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.12);
+}
+
+.icone-circulo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: rgba(var(--bs-primary-rgb), 0.08);
+  color: var(--cor-marca);
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* Faixa de abertura da página inicial */
+.faixa-abertura {
+  background:
+    linear-gradient(135deg, rgba(11, 35, 61, 0.96), rgba(18, 53, 91, 0.9)),
+    repeating-linear-gradient(90deg, transparent 0 40px, rgba(242, 169, 0, 0.15) 40px 80px);
+  color: #fff;
+}
+
+/* Caixa central para login e cadastro */
+.caixa-formulario {
+  max-width: 28rem;
+}
+.caixa-formulario-larga {
+  max-width: 42rem;
+}
+
+/* Texto longo digitado pelo usuário mantém as quebras de linha */
+.texto-livre {
+  white-space: pre-line;
+}

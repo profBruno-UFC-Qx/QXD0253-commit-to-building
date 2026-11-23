@@ -1,0 +1,23 @@
+{
+  "name": "portal-empregos-cargas-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Frontend do Portal de Empregos do Transporte de Cargas",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "bootstrap": "5.3.9",
+    "bootstrap-icons": "1.13.2"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "5.2.11",
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3",
+    "vite": "8.3.8"
+  }
+}

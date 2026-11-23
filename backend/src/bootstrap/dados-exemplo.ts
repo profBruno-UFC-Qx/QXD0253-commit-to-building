@@ -1,3 +1,5 @@
+import { statSync } from 'node:fs';
+import { join } from 'node:path';
 import type { Core } from '@strapi/strapi';
 import { PAPEIS } from '../utils/papeis';
 
@@ -31,21 +33,35 @@ const USUARIOS = {
 
 type ChaveUsuario = keyof typeof USUARIOS;
 
-const EMPRESAS = [
+interface EmpresaDeExemplo {
+  chave: string;
+  responsavel: ChaveUsuario;
+  nome: string;
+  cnpj: string;
+  cidade: string;
+  telefone: string;
+  descricao: string;
+  situacao: 'pendente' | 'aprovada' | 'recusada';
+  /** Arquivo em backend/dados-exemplo */
+  logo?: string;
+}
+
+const EMPRESAS: EmpresaDeExemplo[] = [
   {
     chave: 'raysan',
-    responsavel: 'raysan' as ChaveUsuario,
+    responsavel: 'raysan',
     nome: 'Raysan Transportes',
     cnpj: '12345678000195',
     cidade: 'Fortaleza',
     telefone: '(85) 3000-1992',
     descricao:
       'Empresa de Fortaleza que atua desde 1992 com transporte de carga a granel, locação de máquinas e operações portuárias. Frota com rodotrem, vanderleia, LS e truck, além de pá carregadeira e retroescavadeira.',
-    situacao: 'aprovada' as const,
+    situacao: 'aprovada',
+    logo: 'raysan-logo.png',
   },
   {
     chave: 'transnordeste',
-    responsavel: 'transnordeste' as ChaveUsuario,
+    responsavel: 'transnordeste',
     nome: 'Transnordeste Cargas',
     cnpj: '98765432000198',
     cidade: 'Maracanaú',
@@ -55,7 +71,7 @@ const EMPRESAS = [
   },
   {
     chave: 'pecem',
-    responsavel: 'pecem' as ChaveUsuario,
+    responsavel: 'pecem',
     nome: 'Pecém Logística',
     cnpj: '45678912000155',
     cidade: 'São Gonçalo do Amarante',
@@ -204,6 +220,19 @@ const CANDIDATURAS = [
   { curriculo: 'pedro', vaga: 'retro', situacao: 'em_analise' as const },
 ];
 
+/** Envia uma imagem da pasta backend/dados-exemplo para a biblioteca de mídia. */
+async function enviarImagem(strapi: Core.Strapi, arquivo: string, descricao: string): Promise<number> {
+  const caminho = join(strapi.dirs.app.root, 'dados-exemplo', arquivo);
+  const [enviado] = await strapi
+    .plugin('upload')
+    .service('upload')
+    .upload({
+      data: { fileInfo: { name: arquivo, alternativeText: descricao } },
+      files: { filepath: caminho, originalFilename: arquivo, mimetype: 'image/png', size: statSync(caminho).size },
+    });
+  return enviado.id;
+}
+
 export async function criarDadosDeExemplo(strapi: Core.Strapi): Promise<void> {
   if (process.env.DADOS_EXEMPLO === 'false') return;
 
@@ -237,9 +266,10 @@ export async function criarDadosDeExemplo(strapi: Core.Strapi): Promise<void> {
     }
 
     const empresas: Record<string, string> = {};
-    for (const { chave, responsavel, ...dados } of EMPRESAS) {
+    for (const { chave, responsavel, logo, ...dados } of EMPRESAS) {
+      const logoId = logo ? await enviarImagem(strapi, logo, `Logo da ${dados.nome}`) : undefined;
       const empresa = await strapi.documents('api::empresa.empresa').create({
-        data: { ...dados, responsavel: usuarios[responsavel].id },
+        data: { ...dados, responsavel: usuarios[responsavel].id, ...(logoId ? { logo: logoId } : {}) },
       });
       empresas[chave] = empresa.documentId;
     }

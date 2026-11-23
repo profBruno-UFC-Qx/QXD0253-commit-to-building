@@ -624,6 +624,7 @@ export interface ApiEmpresaEmpresa extends Struct.CollectionTypeSchema {
       'api::empresa.empresa'
     > &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images'>;
     nome: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{

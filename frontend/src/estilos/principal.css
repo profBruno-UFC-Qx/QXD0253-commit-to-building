@@ -1,24 +1,40 @@
 /*
- * Estilos do site. Usa o Bootstrap como base e ajusta as cores para a
- * identidade do projeto: azul-escuro (estrada à noite) e amarelo
- * (sinalização de estrada).
+ * Estilos do site. Usa o Bootstrap como base e aplica a paleta inspirada na
+ * parceira inicial do projeto, a Raysan Transportes: asfalto escuro e o
+ * amarelo da faixa de estrada, com títulos em Josefin Sans.
  */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'bootstrap-icons/font/bootstrap-icons.min.css';
+@import '@fontsource/josefin-sans/600.css';
+@import '@fontsource/josefin-sans/700.css';
 
 :root {
-  --cor-marca: #12355b;
-  --cor-marca-escura: #0b233d;
-  --cor-destaque: #f2a900;
-  --cor-destaque-escura: #d69500;
+  --cor-marca: #262424; /* asfalto */
+  --cor-marca-escura: #161414;
+  --cor-destaque: #fff12d; /* faixa de estrada: só sobre fundo escuro */
+  --cor-destaque-escura: #e6d81f;
+  --cor-destaque-texto: #7a6c00; /* amarelo escurecido, legível sobre fundo claro */
+  --fonte-titulos: 'Josefin Sans', 'Segoe UI', sans-serif;
 
   --bs-primary: var(--cor-marca);
-  --bs-primary-rgb: 18, 53, 91;
-  --bs-link-color: #1d5fa8;
-  --bs-link-color-rgb: 29, 95, 168;
-  --bs-link-hover-color: var(--cor-marca);
-  --bs-body-bg: #f5f7fa;
+  --bs-primary-rgb: 38, 36, 36;
+  --bs-link-color: var(--cor-marca);
+  --bs-link-color-rgb: 38, 36, 36;
+  --bs-link-hover-color: var(--cor-destaque-texto);
+  --bs-link-hover-color-rgb: 122, 108, 0;
+  --bs-body-bg: #f6f6f4;
   --bs-font-sans-serif: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --bs-focus-ring-color: rgba(230, 216, 31, 0.45);
+}
+
+/* ---------- Tipografia ---------- */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.display-6,
+.navbar-brand {
+  font-family: var(--fonte-titulos);
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 /* ---------- Cores da marca ---------- */
@@ -27,6 +43,9 @@
 }
 .text-destaque {
   color: var(--cor-destaque);
+}
+.text-destaque-escuro {
+  color: var(--cor-destaque-texto);
 }
 .bg-destaque {
   background-color: var(--cor-destaque);
@@ -41,23 +60,49 @@
   --bs-btn-active-border-color: var(--cor-marca-escura);
   --bs-btn-disabled-bg: var(--cor-marca);
   --bs-btn-disabled-border-color: var(--cor-marca);
+  --bs-btn-focus-shadow-rgb: 230, 216, 31;
 }
 .btn-outline-primary {
   --bs-btn-color: var(--cor-marca);
   --bs-btn-border-color: var(--cor-marca);
   --bs-btn-hover-bg: var(--cor-marca);
   --bs-btn-hover-border-color: var(--cor-marca);
-  --bs-btn-active-bg: var(--cor-marca-escura);
+  --bs-btn-active-bg: var(--cor-marca);
+  --bs-btn-active-border-color: var(--cor-marca);
+  --bs-btn-focus-shadow-rgb: 230, 216, 31;
 }
 .btn-destaque {
-  --bs-btn-color: #1f1f1f;
+  --bs-btn-color: var(--cor-marca);
   --bs-btn-bg: var(--cor-destaque);
   --bs-btn-border-color: var(--cor-destaque);
-  --bs-btn-hover-color: #1f1f1f;
+  --bs-btn-hover-color: var(--cor-marca);
   --bs-btn-hover-bg: var(--cor-destaque-escura);
   --bs-btn-hover-border-color: var(--cor-destaque-escura);
+  --bs-btn-active-color: var(--cor-marca);
   --bs-btn-active-bg: var(--cor-destaque-escura);
+  --bs-btn-disabled-color: var(--cor-marca);
+  --bs-btn-disabled-bg: var(--cor-destaque);
   --bs-btn-font-weight: 600;
+}
+
+/* Foco dos campos e paginação: troca o azul padrão do Bootstrap */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--cor-destaque-escura);
+  box-shadow: 0 0 0 0.25rem rgba(230, 216, 31, 0.35);
+}
+.form-check-input:checked {
+  background-color: var(--cor-marca);
+  border-color: var(--cor-marca);
+}
+.pagination {
+  --bs-pagination-color: var(--cor-marca);
+  --bs-pagination-hover-color: var(--cor-marca);
+  --bs-pagination-focus-color: var(--cor-marca);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(230, 216, 31, 0.35);
+  --bs-pagination-active-bg: var(--cor-marca);
+  --bs-pagination-active-border-color: var(--cor-marca);
 }
 
 /* ---------- Navbar ---------- */
@@ -95,12 +140,44 @@
   flex-shrink: 0;
 }
 
-/* Faixa de abertura da página inicial */
+/* Faixa de abertura da página inicial: asfalto com a faixa tracejada embaixo */
 .faixa-abertura {
-  background:
-    linear-gradient(135deg, rgba(11, 35, 61, 0.96), rgba(18, 53, 91, 0.9)),
-    repeating-linear-gradient(90deg, transparent 0 40px, rgba(242, 169, 0, 0.15) 40px 80px);
+  position: relative;
+  background: radial-gradient(circle at 80% 20%, #3a3737 0%, var(--cor-marca) 55%, var(--cor-marca-escura) 100%);
   color: #fff;
+}
+.faixa-abertura::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.25rem;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, var(--cor-destaque) 0 48px, transparent 48px 96px);
+  opacity: 0.85;
+}
+
+/* Logos de empresas */
+.logo-empresa {
+  max-height: 3rem;
+  max-width: 10rem;
+  object-fit: contain;
+}
+.logo-empresa-grande {
+  max-height: 5rem;
+  max-width: 100%;
+  object-fit: contain;
+}
+.logo-mini {
+  height: 1.1rem;
+  width: auto;
+  max-width: 4rem;
+  object-fit: contain;
+  vertical-align: text-bottom;
+}
+.logo-parceira {
+  max-width: 18rem;
+  width: 100%;
 }
 
 /* Caixa central para login e cadastro */

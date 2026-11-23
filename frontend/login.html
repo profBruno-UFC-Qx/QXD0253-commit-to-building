@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Entre na sua conta do Portal de Empregos do Transporte de Cargas." />
+    <title>Entrar | Portal de Empregos do Transporte de Cargas</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/estilos/principal.css" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header id="topo"></header>
+
+    <main id="conteudo" class="flex-grow-1 py-5">
+      <div class="container caixa-formulario">
+        <div class="card cartao">
+          <div class="card-body p-4">
+            <div class="text-center mb-4">
+              <span class="icone-circulo mb-2"><i class="bi bi-person-lock" aria-hidden="true"></i></span>
+              <h1 class="h4 mb-1">Entrar</h1>
+              <p class="text-body-secondary small mb-0">Acesse a sua área de empresa, candidato ou administrador.</p>
+            </div>
+
+            <div id="mensagem" aria-live="polite"></div>
+
+            <form id="form-login" novalidate>
+              <div class="mb-3">
+                <label for="identificador" class="form-label">E-mail ou nome de usuário</label>
+                <input type="text" class="form-control" id="identificador" name="identificador" autocomplete="username" required autofocus />
+                <div class="invalid-feedback">Informe o seu e-mail ou nome de usuário.</div>
+              </div>
+              <div class="mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <div class="input-group has-validation">
+                  <input type="password" class="form-control" id="senha" name="senha" autocomplete="current-password" required />
+                  <button class="btn btn-outline-secondary" type="button" id="mostrar-senha" aria-label="Mostrar senha" aria-pressed="false">
+                    <i class="bi bi-eye" aria-hidden="true"></i>
+                  </button>
+                  <div class="invalid-feedback">Informe a sua senha.</div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100" id="botao-entrar">
+                <i class="bi bi-box-arrow-in-right me-1" aria-hidden="true"></i>Entrar
+              </button>
+            </form>
+
+            <p class="text-center small mt-4 mb-0">
+              Ainda não tem conta? <a href="/cadastro.html">Cadastre-se gratuitamente</a>
+            </p>
+          </div>
+        </div>
+
+        <details class="card cartao mt-3 small">
+          <summary class="card-body py-2 text-body-secondary">Contas de demonstração</summary>
+          <div class="card-body pt-0">
+            <p class="mb-2">Senha de todas: <code>Senha@123</code></p>
+            <ul class="mb-0 ps-3">
+              <li><code>admin</code>: administrador</li>
+              <li><code>raysan</code>: empresa aprovada</li>
+              <li><code>pecemlog</code>: empresa aguardando aprovação</li>
+              <li><code>carlos</code>: candidato (CNH E)</li>
+              <li><code>lucas</code>: candidato sem currículo</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </main>
+
+    <footer id="rodape"></footer>
+    <script type="module" src="/src/paginas/login.ts"></script>
+  </body>
+</html>

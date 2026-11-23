@@ -7,6 +7,16 @@ export type SituacaoVaga = 'aberta' | 'encerrada';
 export type TipoVaga = 'motorista' | 'operador';
 export type SituacaoCandidatura = 'enviada' | 'em_analise' | 'aprovada' | 'recusada';
 
+/** Arquivo da biblioteca de mídia do Strapi (ex.: logo da empresa). */
+export interface Midia {
+  id: number;
+  url: string;
+  alternativeText: string | null;
+  width: number | null;
+  height: number | null;
+  formats?: Partial<Record<'thumbnail' | 'small' | 'medium', { url: string; width: number; height: number }>> | null;
+}
+
 interface Registro {
   id: number;
   documentId: string;
@@ -20,6 +30,7 @@ export interface Empresa extends Registro {
   cidade: string;
   telefone: string;
   descricao: string | null;
+  logo?: Midia | null;
   situacao: SituacaoEmpresa;
   vagas?: Vaga[];
 }

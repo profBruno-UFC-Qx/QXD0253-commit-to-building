@@ -101,7 +101,7 @@ async function carregar(): Promise<void> {
   try {
     const resposta = await api.get<RespostaLista<Vaga>>('/vagas', {
       filters: filtrosDaApi(filtros),
-      populate: ['empresa'],
+      populate: { empresa: { populate: ['logo'] } },
       sort: filtros.ordem === 'salario' ? ['salario:desc', 'createdAt:desc'] : ['createdAt:desc'],
       pagination: { page: filtros.pagina, pageSize: TAMANHO_DA_PAGINA },
     });

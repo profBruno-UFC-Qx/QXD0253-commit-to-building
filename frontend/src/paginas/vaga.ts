@@ -5,6 +5,7 @@ import { erroAoCarregar } from '../lib/componentes';
 import { NOME_DO_SITE } from '../lib/config';
 import { carregando, definirCarregando, elemento, mostrarAlerta } from '../lib/dom';
 import { html, renderizar } from '../lib/html';
+import { urlDaMidia } from '../lib/midia';
 import { iniciarPagina } from '../lib/pagina';
 import {
   formatarCnpj,
@@ -73,7 +74,7 @@ async function carregar(): Promise<void> {
   renderizar(detalhes, carregando());
 
   try {
-    const { data: vaga } = await api.get<RespostaItem<Vaga>>(`/vagas/${encodeURIComponent(id)}`, { populate: ['empresa'] });
+    const { data: vaga } = await api.get<RespostaItem<Vaga>>(`/vagas/${encodeURIComponent(id)}`, { populate: { empresa: { populate: ['logo'] } } });
     document.title = `${vaga.titulo} | ${NOME_DO_SITE}`;
     elemento('#caminho-titulo').textContent = vaga.titulo;
     const tipo = TIPO_VAGA[vaga.tipo];
@@ -122,6 +123,9 @@ async function carregar(): Promise<void> {
             ? html`<section class="card cartao" aria-labelledby="titulo-empresa">
                 <div class="card-body">
                   <h2 class="h6" id="titulo-empresa">Sobre a empresa</h2>
+                  ${empresa.logo
+                    ? html`<img src="${urlDaMidia(empresa.logo, 'small')}" class="logo-empresa-grande mb-2" alt="Logo da ${empresa.nome}" />`
+                    : ''}
                   <p class="fw-semibold mb-1">${empresa.nome}</p>
                   <p class="small text-body-secondary mb-2">CNPJ ${formatarCnpj(empresa.cnpj)} · ${empresa.cidade}</p>
                   ${empresa.descricao ? html`<p class="small texto-livre">${empresa.descricao}</p>` : ''}

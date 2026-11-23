@@ -14,7 +14,7 @@ async function carregar(): Promise<void> {
     const { data } = await api.get<RespostaLista<Empresa>>('/empresas', {
       sort: ['nome:asc'],
       // traz só o id das vagas abertas, para contar
-      populate: { vagas: { fields: ['id'], filters: { situacao: { $eq: 'aberta' } } } },
+      populate: { logo: true, vagas: { fields: ['id'], filters: { situacao: { $eq: 'aberta' } } } },
       pagination: { pageSize: 100 },
     });
     renderizar(

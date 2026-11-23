@@ -1,4 +1,5 @@
 import { html } from './html';
+import { urlDaMidia } from './midia';
 import { formatarData, formatarSalario, selo, SITUACAO_VAGA, textoCnh, TIPO_VAGA } from './rotulos';
 import type { Empresa, Paginacao, Vaga } from './tipos';
 
@@ -14,7 +15,9 @@ export function cartaoVaga(vaga: Vaga, opcoes: { mostrarSituacao?: boolean } = {
             <h3 class="h6 mb-1">
               <a class="stretched-link text-decoration-none text-body" href="/vaga.html?id=${vaga.documentId}">${vaga.titulo}</a>
             </h3>
-            <div class="small text-body-secondary">${vaga.empresa?.nome ?? ''}</div>
+            <div class="small text-body-secondary">
+              ${vaga.empresa?.logo ? html`<img src="${urlDaMidia(vaga.empresa.logo, 'thumbnail')}" class="logo-mini me-1" alt="" loading="lazy" />` : ''}${vaga.empresa?.nome ?? ''}
+            </div>
           </div>
         </div>
         <ul class="list-unstyled small text-body-secondary mb-3">
@@ -38,8 +41,11 @@ export function cartaoEmpresa(empresa: Empresa, totalVagas: number) {
   return html`<div class="col">
     <article class="card cartao h-100">
       <div class="card-body d-flex flex-column">
+        ${empresa.logo
+          ? html`<img src="${urlDaMidia(empresa.logo, 'small')}" class="logo-empresa mb-3" alt="Logo da ${empresa.nome}" loading="lazy" />`
+          : ''}
         <div class="d-flex gap-3 align-items-center mb-3">
-          <span class="icone-circulo"><i class="bi bi-buildings" aria-hidden="true"></i></span>
+          ${empresa.logo ? '' : html`<span class="icone-circulo"><i class="bi bi-buildings" aria-hidden="true"></i></span>`}
           <div>
             <h2 class="h5 mb-0">${empresa.nome}</h2>
             <span class="small text-body-secondary"><i class="bi bi-geo-alt me-1" aria-hidden="true"></i>${empresa.cidade}</span>

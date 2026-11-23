@@ -33,7 +33,7 @@ async function carregarUltimas(): Promise<void> {
   renderizar(ultimas, carregando());
   try {
     const { data } = await api.get<RespostaLista<Vaga>>('/vagas', {
-      populate: ['empresa'],
+      populate: { empresa: { populate: ['logo'] } },
       sort: ['createdAt:desc'],
       pagination: { pageSize: 6 },
     });

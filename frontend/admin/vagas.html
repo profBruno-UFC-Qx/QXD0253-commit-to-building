@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Administração: moderação de vagas." />
+    <meta name="robots" content="noindex" />
+    <title>Moderar vagas | Portal de Empregos do Transporte de Cargas</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/estilos/principal.css" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header id="topo"></header>
+
+    <main id="conteudo" class="flex-grow-1 py-4">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-3">
+          <div>
+            <h1 class="h3 mb-1">Moderar vagas</h1>
+            <p class="text-body-secondary mb-0" id="resumo">&nbsp;</p>
+          </div>
+          <form class="d-flex gap-2" id="form-filtros" role="search">
+            <div>
+              <label for="busca" class="form-label small mb-1">Buscar</label>
+              <input type="search" class="form-control" id="busca" name="busca" placeholder="Título ou empresa" />
+            </div>
+            <div>
+              <label for="situacao" class="form-label small mb-1">Situação</label>
+              <select class="form-select" id="situacao" name="situacao">
+                <option value="">Todas</option>
+                <option value="aberta">Abertas</option>
+                <option value="encerrada">Encerradas</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary align-self-end" aria-label="Buscar"><i class="bi bi-search" aria-hidden="true"></i></button>
+          </form>
+        </div>
+        <div id="mensagem" aria-live="polite"></div>
+        <div class="card cartao"><div class="card-body" id="lista"></div></div>
+      </div>
+    </main>
+
+    <footer id="rodape"></footer>
+    <script type="module" src="/src/paginas/admin/vagas.ts"></script>
+  </body>
+</html>

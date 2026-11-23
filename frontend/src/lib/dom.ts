@@ -75,3 +75,13 @@ export function validarFormulario(form: HTMLFormElement): boolean {
   form.classList.add('was-validated');
   return form.checkValidity();
 }
+
+/** Preenche os campos de um formulário a partir de um objeto (pelo atributo name). */
+export function preencherFormulario(form: HTMLFormElement, dados: Record<string, unknown>): void {
+  for (const [nome, valor] of Object.entries(dados)) {
+    const campo = form.elements.namedItem(nome);
+    if (campo instanceof HTMLInputElement || campo instanceof HTMLSelectElement || campo instanceof HTMLTextAreaElement) {
+      campo.value = valor === null || valor === undefined ? '' : String(valor);
+    }
+  }
+}

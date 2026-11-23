@@ -52,3 +52,11 @@ export async function iniciarPagina(opcoes: OpcoesDaPagina = {}): Promise<Perfil
 
   return perfil;
 }
+
+/**
+ * Versão para páginas restritas: só continua se o usuário tiver um dos
+ * papéis, então o perfil nunca é null.
+ */
+export async function iniciarAreaRestrita(papeis: Papel[]): Promise<Perfil> {
+  return (await iniciarPagina({ papeis })) as Perfil;
+}

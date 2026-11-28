@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Administração: aprovação de empresas." />
+    <meta name="robots" content="noindex" />
+    <title>Aprovar empresas | Portal de Empregos do Transporte de Cargas</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/estilos/principal.css" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header id="topo"></header>
+
+    <main id="conteudo" class="flex-grow-1 py-4">
+      <div class="container">
+        <div class="mb-3">
+          <h1 class="h3 mb-1">Aprovar empresas</h1>
+          <p class="text-body-secondary mb-0">Só empresas aprovadas podem publicar vagas e aparecer no portal.</p>
+        </div>
+        <ul class="nav nav-tabs mb-3" id="abas" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" type="button" role="tab" aria-selected="true" data-situacao="pendente">Pendentes <span class="badge text-bg-warning ms-1" data-total="pendente">–</span></button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" type="button" role="tab" aria-selected="false" data-situacao="aprovada">Aprovadas <span class="badge text-bg-success ms-1" data-total="aprovada">–</span></button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" type="button" role="tab" aria-selected="false" data-situacao="recusada">Recusadas <span class="badge text-bg-danger ms-1" data-total="recusada">–</span></button>
+          </li>
+        </ul>
+        <div id="mensagem" aria-live="polite"></div>
+        <div id="lista" role="tabpanel"></div>
+      </div>
+    </main>
+
+    <footer id="rodape"></footer>
+    <script type="module" src="/src/paginas/admin/empresas.ts"></script>
+  </body>
+</html>

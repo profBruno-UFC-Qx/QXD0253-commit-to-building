@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Crie a sua conta gratuita de candidato ou de empresa." />
+    <title>Cadastro | Portal de Empregos do Transporte de Cargas</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/estilos/principal.css" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header id="topo"></header>
+
+    <main id="conteudo" class="flex-grow-1 py-5">
+      <div class="container caixa-formulario-larga">
+        <div class="card cartao">
+          <div class="card-body p-4">
+            <h1 class="h4 mb-1">Criar conta</h1>
+            <p class="text-body-secondary small">Gratuito para candidatos e empresas.</p>
+
+            <div id="mensagem" aria-live="polite"></div>
+
+            <form id="form-cadastro" novalidate>
+              <fieldset class="mb-4">
+                <legend class="form-label fs-6">Eu sou</legend>
+                <div class="row g-2">
+                  <div class="col-sm-6">
+                    <input type="radio" class="btn-check" name="tipo" id="tipo-candidato" value="candidato" checked />
+                    <label class="btn btn-outline-primary w-100 py-3 text-start" for="tipo-candidato">
+                      <i class="bi bi-person-badge fs-4 d-block mb-1" aria-hidden="true"></i>
+                      <strong>Candidato</strong>
+                      <span class="d-block small">Quero encontrar uma vaga</span>
+                    </label>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="radio" class="btn-check" name="tipo" id="tipo-empresa" value="empresa" />
+                    <label class="btn btn-outline-primary w-100 py-3 text-start" for="tipo-empresa">
+                      <i class="bi bi-buildings fs-4 d-block mb-1" aria-hidden="true"></i>
+                      <strong>Empresa</strong>
+                      <span class="d-block small">Quero publicar vagas</span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <h2 class="h6 text-body-secondary text-uppercase small">Dados de acesso</h2>
+              <div class="row g-3 mb-4">
+                <div class="col-sm-6">
+                  <label for="username" class="form-label">Nome de usuário</label>
+                  <input type="text" class="form-control" id="username" name="username" minlength="3" maxlength="50" pattern="[A-Za-z0-9._\-]+" autocomplete="username" required />
+                  <div class="form-text">Letras, números, ponto, hífen ou sublinhado.</div>
+                  <div class="invalid-feedback">Use de 3 a 50 caracteres, sem espaços ou acentos.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input type="email" class="form-control" id="email" name="email" maxlength="120" autocomplete="email" required />
+                  <div class="invalid-feedback">Informe um e-mail válido.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="password" class="form-label">Senha</label>
+                  <input type="password" class="form-control" id="password" name="password" minlength="8" maxlength="72" autocomplete="new-password" required />
+                  <div class="invalid-feedback">A senha deve ter pelo menos 8 caracteres.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="confirmacao" class="form-label">Confirme a senha</label>
+                  <input type="password" class="form-control" id="confirmacao" name="confirmacao" autocomplete="new-password" required />
+                  <div class="invalid-feedback">As senhas não são iguais.</div>
+                </div>
+              </div>
+
+              <fieldset id="campos-empresa" hidden disabled>
+                <h2 class="h6 text-body-secondary text-uppercase small">Dados da empresa</h2>
+                <div class="alert alert-info small">
+                  <i class="bi bi-info-circle me-1" aria-hidden="true"></i>O cadastro da empresa passa por aprovação do administrador antes de publicar vagas.
+                </div>
+                <div class="row g-3 mb-4">
+                  <div class="col-sm-8">
+                    <label for="empresa-nome" class="form-label">Nome da empresa</label>
+                    <input type="text" class="form-control" id="empresa-nome" name="empresa-nome" minlength="2" maxlength="120" autocomplete="organization" required />
+                    <div class="invalid-feedback">Informe o nome da empresa.</div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="empresa-cnpj" class="form-label">CNPJ</label>
+                    <input type="text" class="form-control" id="empresa-cnpj" name="empresa-cnpj" inputmode="numeric" placeholder="00.000.000/0000-00" required />
+                    <div class="invalid-feedback">CNPJ inválido.</div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="empresa-cidade" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="empresa-cidade" name="empresa-cidade" list="cidades" maxlength="80" required />
+                    <datalist id="cidades"></datalist>
+                    <div class="invalid-feedback">Informe a cidade.</div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="empresa-telefone" class="form-label">Telefone</label>
+                    <input type="tel" class="form-control" id="empresa-telefone" name="empresa-telefone" inputmode="tel" placeholder="(85) 99999-9999" autocomplete="tel" required />
+                    <div class="invalid-feedback">Informe o telefone com DDD.</div>
+                  </div>
+                  <div class="col-12">
+                    <label for="empresa-descricao" class="form-label">Descrição <span class="text-body-secondary small">(opcional)</span></label>
+                    <textarea class="form-control" id="empresa-descricao" name="empresa-descricao" rows="3" maxlength="2000" placeholder="O que a empresa faz, frota, região de atuação..."></textarea>
+                  </div>
+                </div>
+              </fieldset>
+
+              <button type="submit" class="btn btn-primary w-100" id="botao-cadastrar">
+                <i class="bi bi-person-plus me-1" aria-hidden="true"></i>Criar conta
+              </button>
+            </form>
+
+            <p class="text-center small mt-4 mb-0">Já tem conta? <a href="/login.html">Entrar</a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="rodape"></footer>
+    <script type="module" src="/src/paginas/cadastro.ts"></script>
+  </body>
+</html>

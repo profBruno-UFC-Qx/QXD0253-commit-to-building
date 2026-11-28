@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vagas gratuitas para motoristas de caminhão e operadores de máquinas pesadas na Região Metropolitana de Fortaleza." />
+    <title>Portal de Empregos do Transporte de Cargas</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/estilos/principal.css" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header id="topo"></header>
+
+    <main id="conteudo" class="flex-grow-1">
+      <section class="faixa-abertura py-5" aria-labelledby="titulo-principal">
+        <div class="container py-lg-4">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+              <span class="badge bg-destaque text-dark mb-3">Gratuito · Região Metropolitana de Fortaleza</span>
+              <h1 class="display-6 fw-bold" id="titulo-principal">Vagas para quem move cargas no Ceará</h1>
+              <p class="lead mb-4">
+                Motoristas de caminhão e operadores de máquinas pesadas encontram as vagas das transportadoras da região, se
+                candidatam e acompanham a resposta, tudo em um só lugar.
+              </p>
+              <form class="d-flex flex-column flex-sm-row gap-2" action="/vagas.html" method="get" role="search">
+                <label for="busca-rapida" class="visually-hidden">Buscar vagas</label>
+                <input type="search" class="form-control form-control-lg" id="busca-rapida" name="busca" placeholder="Rodotrem, retroescavadeira, truck..." />
+                <button class="btn btn-destaque btn-lg text-nowrap" type="submit"><i class="bi bi-search me-1" aria-hidden="true"></i>Buscar vagas</button>
+              </form>
+            </div>
+            <div class="col-lg-5">
+              <div class="row g-3 text-center" id="numeros" aria-live="polite">
+                <div class="col-6">
+                  <div class="p-3 rounded-3 bg-white bg-opacity-10">
+                    <div class="display-6 fw-bold text-destaque" id="total-vagas">–</div>
+                    <div class="small">vagas abertas</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-3 rounded-3 bg-white bg-opacity-10">
+                    <div class="display-6 fw-bold text-destaque" id="total-empresas">–</div>
+                    <div class="small">empresas participantes</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container py-5" aria-labelledby="titulo-ultimas">
+        <div class="d-flex justify-content-between align-items-end mb-3">
+          <h2 class="h4 mb-0" id="titulo-ultimas">Vagas mais recentes</h2>
+          <a href="/vagas.html">Ver todas <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div id="ultimas-vagas"></div>
+      </section>
+
+      <section class="bg-white py-5" aria-labelledby="titulo-como-funciona">
+        <div class="container">
+          <h2 class="h4 text-center mb-4" id="titulo-como-funciona">Como funciona</h2>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card cartao h-100">
+                <div class="card-body p-4">
+                  <h3 class="h5"><i class="bi bi-person-badge text-destaque-escuro me-2" aria-hidden="true"></i>Para candidatos</h3>
+                  <ol class="mb-4">
+                    <li>Crie a sua conta gratuita.</li>
+                    <li>Preencha o currículo com a sua CNH e os equipamentos que já operou.</li>
+                    <li>Candidate-se às vagas compatíveis com a sua CNH.</li>
+                    <li>Acompanhe se a candidatura foi enviada, está em análise, aprovada ou recusada.</li>
+                  </ol>
+                  <a class="btn btn-primary" href="/cadastro.html?tipo=candidato" data-somente-visitante>Quero uma vaga</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card cartao h-100">
+                <div class="card-body p-4">
+                  <h3 class="h5"><i class="bi bi-buildings text-destaque-escuro me-2" aria-hidden="true"></i>Para empresas</h3>
+                  <ol class="mb-4">
+                    <li>Cadastre a empresa com o CNPJ.</li>
+                    <li>Aguarde a aprovação do administrador do portal.</li>
+                    <li>Publique as vagas informando a CNH e o equipamento.</li>
+                    <li>Veja os currículos de quem se candidatou e dê retorno a cada um.</li>
+                  </ol>
+                  <a class="btn btn-outline-primary" href="/cadastro.html?tipo=empresa" data-somente-visitante>Cadastrar empresa</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container py-5" aria-labelledby="titulo-sobre">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="h4" id="titulo-sobre">Por que este portal existe</h2>
+            <p>
+              Faltam motoristas no transporte de cargas, e, ao mesmo tempo, muita gente na Região Metropolitana de Fortaleza
+              procura trabalho. Essas vagas costumam circular só por indicação ou em grupos de WhatsApp, e quem não conhece
+              ninguém do ramo não fica sabendo delas.
+            </p>
+            <p>
+              O portal é um projeto de extensão da Universidade Federal do Ceará. A parceira inicial é a
+              <strong>Raysan Transportes</strong>, empresa de Fortaleza que atua desde 1992 com carga a granel, locação de
+              máquinas e operações portuárias. Qualquer transportadora da região pode participar.
+            </p>
+            <figure class="mb-0">
+              <a href="http://raysantransportes.com.br/" target="_blank" rel="noopener noreferrer">
+                <img src="/img/raysan-logo.webp" class="logo-parceira" width="640" height="170" alt="Raysan Transportes (abre o site da empresa em nova aba)" loading="lazy" />
+              </a>
+              <figcaption class="small text-body-secondary mt-1">Parceira inicial do projeto</figcaption>
+            </figure>
+          </div>
+          <div class="col-lg-6">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="card cartao h-100"><div class="card-body">
+                  <i class="bi bi-truck fs-3 text-destaque-escuro" aria-hidden="true"></i>
+                  <p class="fw-semibold mb-1 mt-2">Motoristas</p>
+                  <p class="small text-body-secondary mb-0">Rodotrem, bitrem, vanderleia, carreta LS, truck e toco.</p>
+                </div></div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card cartao h-100"><div class="card-body">
+                  <i class="bi bi-cone-striped fs-3 text-destaque-escuro" aria-hidden="true"></i>
+                  <p class="fw-semibold mb-1 mt-2">Operadores</p>
+                  <p class="small text-body-secondary mb-0">Pá carregadeira, retroescavadeira e outras máquinas pesadas.</p>
+                </div></div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card cartao h-100"><div class="card-body">
+                  <i class="bi bi-person-check fs-3 text-destaque-escuro" aria-hidden="true"></i>
+                  <p class="fw-semibold mb-1 mt-2">CNH conferida</p>
+                  <p class="small text-body-secondary mb-0">Só se candidata quem tem a categoria pedida ou superior.</p>
+                </div></div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card cartao h-100"><div class="card-body">
+                  <i class="bi bi-shield-check fs-3 text-destaque-escuro" aria-hidden="true"></i>
+                  <p class="fw-semibold mb-1 mt-2">Empresas verificadas</p>
+                  <p class="small text-body-secondary mb-0">Toda empresa é aprovada pelo administrador antes de publicar.</p>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="rodape"></footer>
+    <script type="module" src="/src/paginas/inicio.ts"></script>
+  </body>
+</html>

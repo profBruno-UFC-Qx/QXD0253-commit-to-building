@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vagas",
+  "info": {
+    "singularName": "vaga",
+    "pluralName": "vagas",
+    "displayName": "Vaga",
+    "description": "Vaga de motorista ou operador de máquinas publicada por uma empresa."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "titulo": { "type": "string", "required": true, "minLength": 3, "maxLength": 120 },
+    "descricao": { "type": "text", "required": true, "maxLength": 4000 },
+    "cidade": { "type": "string", "required": true, "maxLength": 80 },
+    "tipo": {
+      "type": "enumeration",
+      "enum": ["motorista", "operador"],
+      "required": true
+    },
+    "cnhExigida": {
+      "type": "enumeration",
+      "enum": ["nenhuma", "B", "C", "D", "E"],
+      "default": "nenhuma",
+      "required": true
+    },
+    "equipamento": { "type": "string", "maxLength": 80 },
+    "salario": { "type": "decimal", "min": 0 },
+    "situacao": {
+      "type": "enumeration",
+      "enum": ["aberta", "encerrada"],
+      "default": "aberta",
+      "required": true
+    },
+    "empresa": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::empresa.empresa",
+      "inversedBy": "vagas"
+    },
+    "candidaturas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::candidatura.candidatura",
+      "mappedBy": "vaga"
+    }
+  }
+}
